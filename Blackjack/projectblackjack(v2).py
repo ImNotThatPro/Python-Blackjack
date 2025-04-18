@@ -70,6 +70,8 @@ class Blackjack:
             self.under_17 = True
         else:
             self.under_17 = False
+
+
 #Main
 def main():
     print("***************")
@@ -82,6 +84,7 @@ def main():
     while True:
         player.cards = []
         dealer.cards = []
+        play = True
         while True:
             try :
                 print(f"Your current balance: {balance}")
@@ -103,6 +106,8 @@ def main():
             player.reset()
             dealer.reset()
             play = True
+            
+
         #Getting card
         i = 0
         while i <2:
@@ -135,6 +140,7 @@ def main():
                 print("***************")
                 if player.get_value() > 21:
                     play = False
+                    break
                 player.check_blackjack()
                 if player.blackjack:
                     break
@@ -154,8 +160,8 @@ def main():
                 continue
             else:
                 break
-        #Game ending
 
+        #Game ending
         player_total = player.get_value()
         dealer_total = dealer.get_value()
         print(f"Your final hand value: {player_total}")
@@ -194,11 +200,7 @@ def main():
             play_again = input("Do you want to play again? (Y/N)").capitalize().strip()
             print("***************")
             player_choices = ("Yes", "Y", "No", "N")
-            if play_again not in player_choices:
-                print("Invalid choice, please enter an valid option!")
-                print("***************")
-                continue
-            elif play_again == player_choices[0] or player_choices[1]:
+            if play_again == "Yes" or "Y":
                 print("Okay, restarting simulation! ")
                 print("***************")
                 break
